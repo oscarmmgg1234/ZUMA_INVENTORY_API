@@ -1,6 +1,7 @@
 const express = require('express')
 const https = require("https");
 const fs = require('fs');
+const path = require("path");
 const env = require("./env.json")
 const {request} = require("./models/model_interface/request_class");
 const {db} = require("./worker_api/db_interface")
