@@ -1,8 +1,17 @@
 const express = require('express')
+const https = require("https");
+const fs = require('fs');
 const env = require("./env.json")
 const {request} = require("./models/model_interface/request_class");
 const {db} = require("./worker_api/db_interface")
 var bodyParser = require('body-parser')
+
+const sslOptions = {
+    key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+  };
+  
+const sslServer = https.createServer(sslOptions, server);
 
 const server = express();
 const request_model = new request();
@@ -58,4 +67,4 @@ server.post('/ZUMAINVENTORYAPI/get_stock_product', (req,res)=>{
 })
 
 //poll
-server.listen(env.server_port,()=>{console.log(`Listening on port: ${env.server_port}`)})
+sslServer.listen(env.server_port,()=>{console.log(`Listening on port: ${env.server_port}`)})
