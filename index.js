@@ -7,6 +7,10 @@ const {request} = require("./models/model_interface/request_class");
 const {db} = require("./worker_api/db_interface")
 var bodyParser = require('body-parser')
 
+const server = express();
+const request_model = new request();
+const DB = new db();
+
 const sslOptions = {
     key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
     cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
@@ -14,9 +18,7 @@ const sslOptions = {
   
 const sslServer = https.createServer(sslOptions, server);
 
-const server = express();
-const request_model = new request();
-const DB = new db();
+
 
 //request parsing
 server.use(bodyParser.urlencoded({ extended: false }))
