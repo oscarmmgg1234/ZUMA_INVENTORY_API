@@ -16,7 +16,7 @@ const sslOptions = {
     cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
   };
   
-const sslServer = https.createServer(sslOptions, server);
+//const sslServer = https.createServer(sslOptions, server);
 
 
 
@@ -70,4 +70,4 @@ server.post('/ZUMAINVENTORYAPI/get_stock_product', (req,res)=>{
 })
 
 //poll
-sslServer.listen(env.server_port,()=>{console.log(`Listening on port: ${env.server_port}`)})
+server.listen(env.server_port,()=>{console.log(`Listening on port: ${env.server_port}`)})
